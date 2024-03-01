@@ -19,8 +19,10 @@ import { CommonModule } from '@angular/common';
         Back
       </button>
   <main class="container" [ngStyle]="{backgroundImage: 'url('+ this.housingLocation?.photo +')'}">
+  
     <section class="listing-apply">
-        <h2 class="section-heading">Application</h2>
+    <h2 class="section-heading">Apply now to live here</h2>
+    <br/>
         <form [formGroup]="applyForm" (submit)="submitApplication()">
             <label for="first-name">First Name </label>
             <input id="first-name" type="text" formControlName = "firstName"/>
@@ -30,7 +32,7 @@ import { CommonModule } from '@angular/common';
 
             <label for="email">Email </label>
             <input id="email" type="email" formControlName = "email" />
-            <button type="submit" class="btn btn-primary"> Apply now</button>
+            <button id="btn-send-app" type="submit" class="btn btn-primary"> Send Application</button>
         </form>
       </section>
   </main>
@@ -38,7 +40,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './application.component.css'
 })
 export class ApplicationComponent {
-        image = '/assets/estate-background-image.jpg';
+        
         route: ActivatedRoute = inject(ActivatedRoute)
         housingService = inject(HousingService)
         housingLocation: Housinglocation | undefined

@@ -55,7 +55,7 @@ import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
       </div>
         
       </section>
-      <button [routerLink]="['/application', housingLocation?.id]" id="btn_apply" type="button" class="btn btn-primary">Apply now to live here</button>
+      <button [disabled]="housingLocation?.availableUnits == 0" [routerLink]="['/application', housingLocation?.id]" id="btn_apply" type="button" class="btn btn-primary">Apply now </button>
       
     </article>
     
@@ -66,7 +66,9 @@ export class DetailsComponent {
 
   //pass the housing location object to the child component --> details component
   @Input() housingLocation!: Housinglocation | undefined
+  isValid!: boolean
 
+  
   route: ActivatedRoute = inject(ActivatedRoute)
   housingService = inject(HousingService)
   applyForm: any
@@ -78,4 +80,5 @@ export class DetailsComponent {
     
   }
 
+ 
 }
