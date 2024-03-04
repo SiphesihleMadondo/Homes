@@ -64,8 +64,8 @@ import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 })
 export class DetailsComponent {
 
-  //pass the housing location object to the child component --> details component
-  @Input() housingLocation!: Housinglocation | undefined
+  //pass the housing location object to the child component --> application component
+  @Input() housingLocation!: Housinglocation | undefined 
   isValid!: boolean
 
   
@@ -74,11 +74,13 @@ export class DetailsComponent {
   applyForm: any
 
   // the constructor gets call first and initialises the variables
-  constructor () {
-    const housingLocationId = Number(this.route.snapshot.params['id'])
-    this.housingLocation = this.housingService.getHousingLocationById(housingLocationId)
-    
+  constructor() {
+    const housingLocationId = parseInt(this.route.snapshot.params['id'], 10);
+    this.housingService.getHousingLocationById(housingLocationId).then(housingLocation => {
+      this.housingLocation = housingLocation;
+      
+    });
+    console.log(housingLocationId, this.housingLocation?.photo)
   }
 
- 
 }

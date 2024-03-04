@@ -24,6 +24,7 @@
               "src/favicon.ico",
               "src/assets"
             ],
+            
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
@@ -64,10 +65,12 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Homes:build:production"
+              "buildTarget": "Homes:build:production",
+              "proxyConfig": "src/proxy.conf.json"
             },
             "development": {
-              "buildTarget": "Homes:build:development"
+              "buildTarget": "Homes:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
@@ -103,4 +106,5 @@
   "cli": {
     "analytics": "a7511521-1110-4e94-9d7b-71f69c7da6f5"
   }
+  
 }
