@@ -56,7 +56,7 @@ import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
         
       </section>
       <button [disabled]="housingLocation?.availableUnits == 0" [routerLink]="['/application', housingLocation?.id]" id="btn_apply" type="button" class="btn btn-primary">Apply now </button>
-      
+
     </article>
     
   `,
@@ -75,6 +75,7 @@ export class DetailsComponent {
 
   // the constructor gets call first and initialises the variables
   constructor() {
+    
     const housingLocationId = parseInt(this.route.snapshot.params['id'], 10);
     this.housingService.getHousingLocationById(housingLocationId).then(housingLocation => {
       this.housingLocation = housingLocation;

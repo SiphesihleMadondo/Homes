@@ -12,9 +12,9 @@ import { CommonModule } from '@angular/common';
   template: `
    <button
         id="back"
-        type="submit"
+        type="button"
         class="btn btn-outline-primary"
-        [routerLink]="['/details', housingLocationId]"
+        [routerLink]="['/details', this.housingLocation?.id]"
       >
         Back
       </button>
@@ -46,7 +46,7 @@ export class ApplicationComponent {
         housingLocation: Housinglocation | undefined
 
         applyForm: any;
-        housingLocationId?: number
+       
         constructor() {
           
           const housingLocationId = parseInt(this.route.snapshot.params['id'], 10)
@@ -68,6 +68,7 @@ export class ApplicationComponent {
             this.applyForm.value.lastName ?? '',
             this.applyForm.value.email ?? '',
           )
-          console.log(this.housingLocationId, this.housingLocation?.photo)
       }
+
+
 }
