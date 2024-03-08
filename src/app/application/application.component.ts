@@ -84,8 +84,9 @@ export class ApplicationComponent {
           ); 
 
       (await this._housingService.createApplication(this.applyForm.value)).subscribe((applicant: any) => (console.log(applicant)))  
-      
-      this.applyForm.reset();
+          
+            this.applyForm.reset();
+            alert('Congradulations you have successfully applied!!')
       }
 
 }

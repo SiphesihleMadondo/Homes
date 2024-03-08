@@ -17,18 +17,6 @@ export class HousingService {
 
   constructor(protected http: HttpClient) { }
   
-  private removeParentheses(url: string): string {
-    const regex = /(\(|\))/g;
-    const encodedString = url.replace(regex, (match) => {
-        if (match === '(') {
-            return '%28'; // URL-encoded version of "("
-        } else {
-            return '%29'; // URL-encoded version of ")"
-        }
-    });
-    return encodedString;
-}
-
   /*these functions return either a specific HousingLocation by id or the entire list*/ 
   async getAllHOusingLocations(): Promise<Housinglocation[]>{
     const data = await fetch(this.url)
@@ -36,7 +24,7 @@ export class HousingService {
   }
   
   async getHousingLocationById(id: number): Promise<Housinglocation | undefined> {
-    const data = await fetch(`${this.removeParentheses(this.url)}/${id}`);
+    const data = await fetch(`${this.url}/${id}`);
     return await data.json() ?? {};
   }
 
