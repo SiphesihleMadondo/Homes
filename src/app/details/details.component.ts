@@ -4,12 +4,13 @@ import { ActivatedRoute, RouterModule } from '@angular/router'
 import { HousingService } from '../housing.service'
 import { Housinglocation } from '../housinglocation'
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import { ApplicationComponent } from '../application/application.component'
 
 
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, ],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, ApplicationComponent ],
   template: `
    
     <article>
@@ -56,7 +57,7 @@ import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
         
       </section>
       <button [disabled]="housingLocation?.availableUnits == 0" [routerLink]="['/application/',this.housingLocationId]" id="btn_apply" type="button" class="btn btn-primary">Apply now </button>
-
+      
     </article>
     
   `,
@@ -64,7 +65,7 @@ import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 })
 export class DetailsComponent {
 
-  //pass the housing location object to the child component --> application component
+  //pass the housing location object to the child component --> application component.
   housingLocation!: Housinglocation | undefined
   route: ActivatedRoute = inject(ActivatedRoute)
   housingService = inject(HousingService)
@@ -79,6 +80,7 @@ export class DetailsComponent {
       this.housingLocation = housingLocation;
     });
     console.log(this.housingLocationId, this.housingLocation?.photo)
+    
   }
 
 }

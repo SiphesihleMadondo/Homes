@@ -2,6 +2,7 @@ import { Routes } from '@angular/router'
 import { HomeComponent } from './home/home.component'
 import { DetailsComponent } from './details/details.component'
 import { ApplicationComponent } from './application/application.component'
+import { RouterNotFoundComponent } from './router-not-found/router-not-found.component'
 
 const routeConfig: Routes = [
   { 
@@ -18,13 +19,18 @@ const routeConfig: Routes = [
   {
     path: 'details/:id',
     component: DetailsComponent,
-    title: 'Home details'
+    title: 'Home details',
+    
   },
 
   {
     path: 'application/:id',
     component: ApplicationComponent,
     title: 'Application details'
+  },
+
+  { path: '**', 
+    component: RouterNotFoundComponent 
   }
 ]
 
