@@ -4,6 +4,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Housinglocation } from '../housinglocation';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Applicant } from '../../applicant';
 
 @Component({
   selector: 'app-application',
@@ -14,7 +15,7 @@ import { CommonModule } from '@angular/common';
         id="back"
         type="button"
         class="btn btn-outline-primary"
-        [routerLink]="['/details', this.housingLocation?.id]"
+        [routerLink]="['/details/',this.housingLocation?.id]"
       >
         Back
       </button>
@@ -32,9 +33,14 @@ import { CommonModule } from '@angular/common';
 
             <label for="email">Email </label>
             <input id="email" type="email" formControlName = "email" />
+
+            <label for="phonenumber">Phone number </label>
+            <input id="phonenumber" type="text" formControlName = "phonenumber" />
             <button id="btn-send-app" type="submit" class="btn btn-primary"> Send Application</button>
+           
         </form>
       </section>
+    
   </main>
   `,
   styleUrl: './application.component.css'
@@ -46,29 +52,40 @@ export class ApplicationComponent {
         housingLocation: Housinglocation | undefined
 
         applyForm: any;
+        applicants: Applicant [] = []
        
-        constructor() {
+        constructor(protected _housingService: HousingService) {
           
           const housingLocationId = parseInt(this.route.snapshot.params['id'], 10)
           this.housingService.getHousingLocationById(housingLocationId).then((housingLocation) => {
             this.housingLocation = housingLocation;
           })
-
+          
+          // the field must be in similar order as those of an interface to be able to post them correctly
           this.applyForm = new FormGroup({
             firstName : new FormControl(''),
             lastName : new FormControl(''),
             email: new FormControl(''),
+            phonenumber: new FormControl('')
           })
-          
+          console.log(housingLocationId, this.housingLocation?.photo)
         }
 
-        submitApplication(){
-          this.housingService.submitApplication(
+        async submitApplication(){  
+
+        
+         this.housingService.submitApplication(
             this.applyForm.value.firstName ?? '',
             this.applyForm.value.lastName ?? '',
             this.applyForm.value.email ?? '',
-          )
-      }
+            this.applyForm.value.cellno ?? ''
 
+            
+          ); 
+
+      (await this._housingService.createApplication(this.applyForm.value)).subscribe((applicant: any) => (console.log(applicant)))  
+      
+      this.applyForm.reset();
+      }
 
 }

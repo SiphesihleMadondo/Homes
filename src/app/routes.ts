@@ -1,13 +1,19 @@
-import {Routes} from '@angular/router';
-import {HomeComponent} from './home/home.component';
-import {DetailsComponent} from './details/details.component';
-import { ApplicationComponent } from './application/application.component';
+import { Routes } from '@angular/router'
+import { HomeComponent } from './home/home.component'
+import { DetailsComponent } from './details/details.component'
+import { ApplicationComponent } from './application/application.component'
 
 const routeConfig: Routes = [
+  { 
+    path: '', 
+    redirectTo: '/home', 
+    pathMatch: 'full' 
+  
+  },
   {
-    path: '',
+    path: 'home',
     component: HomeComponent,
-    title: 'Home page',
+    title: 'Home page'
   },
   {
     path: 'details/:id',
@@ -20,6 +26,6 @@ const routeConfig: Routes = [
     component: ApplicationComponent,
     title: 'Application details'
   }
-];
+]
 
-export default routeConfig;
+export default routeConfig
