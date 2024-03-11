@@ -18,7 +18,7 @@ import { ApplicationComponent } from '../application/application.component'
         id="back"
         type="button"
         class="btn btn-outline-primary"
-        [routerLink]="['/']"
+        [routerLink]="['/home']"
       >
         Back
       </button>
