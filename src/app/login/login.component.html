@@ -1,3 +1,4 @@
+
 <!-- link to all google icons -->
 <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
 
@@ -26,8 +27,56 @@
               <input type="password" class="form-control" formControlName="password">
           </div>
           <br>
-          <button type="submit" class="btn btn-block btn-primary">Sign in</button>
+       
+          <button type="submit" class="btn btn-block btn-primary">Sign In</button>
+          &nbsp;
+          <button type="button" class="btn btn-block btn-primary" (click)="open(content)">Sign Up</button>
       </form>
     </div>
 </mat-card>
+
+
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Signing Up</h4>
+	</div>
+	<div class="modal-body" >
+		<form>
+			<div class="mb-3">
+                <label>Email</label>
+                <div class="input-group">
+                    <input id="email"
+                    class="form-control"
+                    type="email"/>
+                </div>
+
+                <label>Password</label>
+                <div class="input-group">
+                    <input id="password"
+                    class="form-control"
+                    type="password"
+                    />
+                    
+                </div>
+
+				<label for="dateOfBirth">Date of birth</label>
+				<div class="input-group">
+					<input
+						id="dateOfBirth"
+						class="form-control"
+						placeholder="yyyy-mm-dd"
+						name="dp"
+						ngbDatepicker
+						#dp="ngbDatepicker"
+					/>
+					<button class="btn btn-outline-secondary bi bi-calendar3" (click)="dp.toggle()" type="button"></button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('cancel click')">Cancel</button>
+		<button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+	</div>
+</ng-template>
 <!-- <router-outlet></router-outlet> -->

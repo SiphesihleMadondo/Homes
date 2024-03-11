@@ -6,7 +6,8 @@ import { SharedtokenService } from '../sharedtoken.service';
 import { HousingService } from '../housing.service';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
-
+import {inject, TemplateRef } from '@angular/core';
+import { ModalDismissReasons, NgbDatepickerModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-login',
@@ -18,9 +19,12 @@ import { MatCardModule } from '@angular/material/card';
     MatCardModule,
     FormsModule,
     ReactiveFormsModule,
+    NgbDatepickerModule
   ]
 })
 export class LoginComponent implements OnInit {
+  private modalService = inject(NgbModal);
+	closeResult = '';
   loginForm: FormGroup;
   errors:any = null;
   results: any [] = []
@@ -67,7 +71,7 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/home']);
 
           }else{
-            if ((this.loginForm.value.email == '' || this.loginForm.value.email !== this.email)){
+            if ((this.loginForm.value.email == '' || this.loginForm.value.email !== this.email )){
               this.errors = 'Please enter a correct email address'
             }
             else{
@@ -79,13 +83,22 @@ export class LoginComponent implements OnInit {
         },
      );
       console.log(this.loginForm.value)
-      console.log("button clicked.")
+      
   }
+
   // Handle response
   responseHandler(data:any) {
     this.token.handleData(data.access_token);
     sessionStorage.setItem('loggedUser', data.user);
     sessionStorage.setItem('User_Id', data.user_id);
     sessionStorage.setItem('Client', data.client);
+  }
+
+  open(content: TemplateRef<any>){
+      this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', centered: true}).result.then(
+        (result) =>{
+          this.closeResult = `Closed with: ${result}`
+        }
+      )
   }
 }
