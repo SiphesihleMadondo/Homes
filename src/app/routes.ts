@@ -3,11 +3,12 @@ import { HomeComponent } from './home/home.component'
 import { DetailsComponent } from './details/details.component'
 import { ApplicationComponent } from './application/application.component'
 import { RouterNotFoundComponent } from './router-not-found/router-not-found.component'
+import { LoginComponent } from './login/login.component'
 
 const routeConfig: Routes = [
   { 
     path: '', 
-    redirectTo: '/home', 
+    redirectTo: '/login', 
     pathMatch: 'full' 
   
   },
@@ -27,6 +28,12 @@ const routeConfig: Routes = [
     path: 'application/:id',
     component: ApplicationComponent,
     title: 'Application details'
+  },
+
+  {
+    path: 'login',
+    component: LoginComponent,
+    title: 'login'
   },
 
   { path: '**', 

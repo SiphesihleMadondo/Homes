@@ -37,5 +37,14 @@ export class HousingService {
     return this.http.post<any>(this.backendUrl + 'api/Homes/CreateApplicant', applicant, this.httpOptions);
 
   }
+
+  async returnClients() {
+    return this.http.get<any>(this.backendUrl + 'api/Homes/GetUsers');
+  }
+
+  signin(user: any): Observable<any> {
+    console.log(this.url + `/Checkuser/${user}`)
+    return this.http.get<any>(this.backendUrl + `/Checkuser/${user}`, this.httpOptions)
+  }
   
 } 
