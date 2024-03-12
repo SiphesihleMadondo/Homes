@@ -4,7 +4,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Housinglocation } from '../housinglocation';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Applicant } from '../../applicant';
+import { Applicant } from '../applicant';
 
 @Component({
   selector: 'app-application',

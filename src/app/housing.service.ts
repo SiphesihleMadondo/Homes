@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Housinglocation } from './housinglocation';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Applicant } from '../applicant';
+import { Applicant } from './applicant';
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +45,10 @@ export class HousingService {
   signin(user: any): Observable<any> {
     console.log(this.url + `/Checkuser/${user}`)
     return this.http.get<any>(this.backendUrl + `/Checkuser/${user}`, this.httpOptions)
+  }
+
+  async signup(user: any): Promise<Observable<Applicant>>{
+    return this.http.post<any>(this.backendUrl + 'api/Homes/CreateApplicant', user, this.httpOptions);
   }
   
 } 
