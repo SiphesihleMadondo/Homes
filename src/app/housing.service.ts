@@ -3,6 +3,7 @@ import { Housinglocation } from './housinglocation';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Applicant } from './applicant';
+import { User } from './user';
 
 @Injectable({
   providedIn: 'root'
@@ -47,8 +48,8 @@ export class HousingService {
     return this.http.get<any>(this.backendUrl + `/Checkuser/${user}`, this.httpOptions)
   }
 
-  async signup(user: any): Promise<Observable<Applicant>>{
-    return this.http.post<any>(this.backendUrl + 'api/Homes/CreateApplicant', user, this.httpOptions);
+  async signup(user: any): Promise<Observable<User>>{
+    return this.http.post<any>(this.backendUrl + 'api/Homes/SignUp', user, this.httpOptions);
   }
   
 } 

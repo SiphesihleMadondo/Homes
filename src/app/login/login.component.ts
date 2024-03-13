@@ -7,7 +7,8 @@ import { HousingService } from '../housing.service';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import {inject, TemplateRef } from '@angular/core';
-import { ModalDismissReasons, NgbDatepickerModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDismissReasons, NgbDateAdapter, NgbDateParserFormatter, NgbDatepickerModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {DatepickerAdapterService } from '../datepicker-adapter.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ import { ModalDismissReasons, NgbDatepickerModule, NgbModal } from '@ng-bootstra
     FormsModule,
     ReactiveFormsModule,
     NgbDatepickerModule
-  ]
+  ],
+  providers: [{provide: NgbDateAdapter, useClass: DatepickerAdapterService}]
 })
 export class LoginComponent implements OnInit {
   private modalService = inject(NgbModal);
@@ -30,19 +32,35 @@ export class LoginComponent implements OnInit {
   results: any [] = []
   email?: string 
   password?:string
+  registerform: any
+  model1?: string;
+  model2?: string;
+
   constructor(
     public router: Router,
     public fb: FormBuilder,
     public authService: HousingService,
     private token: SharedtokenService,
     private authState: AuthStateService
-  ) {
-    this.loginForm = this.fb.group({
-      email: new FormControl('', [Validators.required]),
-      password: [],
-    });
+  ) { this.loginForm = this.fb.group({ email: new FormControl('', [Validators.required]), password: [],});
+    
+    this.registerform = new FormGroup({
+      email : new FormControl(''),
+      password: new FormControl(''),
+      dateofbirth: new FormControl(''),
+      firstname: new FormControl(''),
+      lastname: new FormControl(''),
+      province: new FormControl(''),
+      code: new FormControl(''),
+      city: new FormControl('')
+    })
+
   }
+
+  
+
   ngOnInit() {}
+
 
   async onSubmit() {
     (await this.authService.returnClients()).subscribe(
@@ -95,10 +113,18 @@ export class LoginComponent implements OnInit {
   }
 
   open(content: TemplateRef<any>){
-      this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', centered: true}).result.then(
+     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', centered: true, size: 'lg'}).result.then(
         (result) =>{
           this.closeResult = `Closed with: ${result}`
         }
       )
+  }
+  
+ async signup(){
+    (await this.authService.signup(this.registerform.value)).subscribe((user: any ) => (console.log(user)))
+
+    if (this.registerform.value != null) {
+      alert("Congratulations you have successfully registered.")
+    }
   }
 }

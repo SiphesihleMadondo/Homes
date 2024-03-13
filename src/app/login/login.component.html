@@ -28,9 +28,9 @@
           </div>
           <br>
        
-          <button type="submit" class="btn btn-block btn-primary">Sign In</button>
-          &nbsp;
-          <button type="button" class="btn btn-block btn-primary" (click)="open(content)">Sign Up</button>
+          <button id="Signin" type="submit" class="btn btn-block btn-primary">Sign In</button>
+          &nbsp;  
+          <button id="signup" type="button" class="btn btn-block btn-primary" (click)="open(content)">Sign Up</button>
       </form>
     </div>
 </mat-card>
@@ -41,42 +41,71 @@
 		<h4 class="modal-title" id="modal-basic-title">Signing Up</h4>
 	</div>
 	<div class="modal-body" >
-		<form>
-			<div class="mb-3">
-                <label>Email</label>
-                <div class="input-group">
-                    <input id="email"
-                    class="form-control"
-                    type="email"/>
-                </div>
+		<form [formGroup]="registerform" (submit)="signup()" class="row g-3">
+            <div class="col-md-4">
+              <label for="validationDefault01" class="form-label">First name</label>
+              <input formControlName = "firstname" type="text" class="form-control" id="validationDefault01" required>
+            </div>
+            <div class="col-md-4">
+              <label for="validationDefault02" class="form-label">Last name</label>
+              <input formControlName = "lastname" type="text" class="form-control" id="validationDefault02" required>
+            </div>
+            <div class="col-md-4">
+              <label for="validationDefaultEmail" class="form-label">Email</label>
+              <div class="input-group">
+                <span class="input-group-text" id="inputGroupPrepend2">&#64;</span>
+                <input type="text" formControlName ="email" class="form-control" id="validationDefaultEmail"  aria-describedby="inputGroupPrepend2" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+                <label for="validationDefaultPassword" class="form-label">Password</label>
+                  <input type="password" formControlName ="password" class="form-control" id="validationDefaultPassword"  aria-describedby="inputGroupPrepend2" required>
+            </div>
 
-                <label>Password</label>
-                <div class="input-group">
-                    <input id="password"
-                    class="form-control"
-                    type="password"
-                    />
-                    
-                </div>
+            <div class="col-md-6">
+              <label for="validationDefault03" class="form-label">City</label>
+              <input formControlName = "city" type="text" class="form-control" id="validationDefault03" required>
+            </div>
 
-				<label for="dateOfBirth">Date of birth</label>
+            <div class="col-md-6">
+                <label for="dateOfBirth" class="form-label">Date of birth</label>
 				<div class="input-group">
-					<input
-						id="dateOfBirth"
-						class="form-control"
-						placeholder="yyyy-mm-dd"
-						name="dp"
-						ngbDatepicker
-						#dp="ngbDatepicker"
-					/>
-					<button class="btn btn-outline-secondary bi bi-calendar3" (click)="dp.toggle()" type="button"></button>
-				</div>
-			</div>
-		</form>
-	</div>
-	<div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('cancel click')">Cancel</button>
-		<button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+                        <input formControlName="dateofbirth" class="form-control" placeholder="yyyy-mm-dd"
+                               [minDate]="{year: 1924, month: 01, day: 01}"
+                               [maxDate]="{year: 2030, month: 01, day: 01}"
+                               name="d2"  ngbDatepicker #d2="ngbDatepicker">
+                        <div class="input-group-append">
+                          <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
+                        </div>
+                      </div>
+			    </div>
+      
+            <div class="col-md-3">
+              <label for="validationDefault04" class="form-label">Province</label>
+              <select formControlName = "province" class="form-select" id="validationDefault04" required>
+                <option selected disabled value="">Choose...</option>
+                <option>...</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="validationDefault05" class="form-label">Code</label>
+              <input formControlName = "code" type="text" class="form-control" id="validationDefault05" required>
+            </div>
+            
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+                <label class="form-check-label" for="invalidCheck2">
+                  Agree to terms and conditions
+                </label>
+              </div>
+            </div>
+           
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('cancel click')">Cancel</button>
+                <button type="submit" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+            </div>
+          </form>
 	</div>
 </ng-template>
 <!-- <router-outlet></router-outlet> -->

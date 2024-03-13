@@ -73,14 +73,12 @@ export class ApplicationComponent {
 
         async submitApplication(){  
 
-        
          this.housingService.submitApplication(
             this.applyForm.value.firstName ?? '',
             this.applyForm.value.lastName ?? '',
             this.applyForm.value.email ?? '',
             this.applyForm.value.cellno ?? ''
 
-            
           ); 
 
       (await this._housingService.createApplication(this.applyForm.value)).subscribe((applicant: any) => (console.log(applicant)))  
