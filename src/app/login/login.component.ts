@@ -126,5 +126,7 @@ export class LoginComponent implements OnInit {
     if (this.registerform.value != null) {
       alert("Congratulations you have successfully registered.")
     }
+    
+    this.registerform.reset()
   }
 }
