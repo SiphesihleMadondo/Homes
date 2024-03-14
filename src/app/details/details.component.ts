@@ -35,7 +35,7 @@ import { ApplicationComponent } from '../application/application.component'
         <p class="listing-location">
           <br />
           <br />
-          {{ housingLocation?.city }}, {{ housingLocation?.state }}
+          {{ housingLocation?.city }}, {{ housingLocation?.suburb}}
         </p>
       </section>
 

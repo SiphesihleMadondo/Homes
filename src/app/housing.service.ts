@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Applicant } from './applicant';
 import { User } from './user';
+import { Provinces } from './provinces';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +42,10 @@ export class HousingService {
 
   async returnClients() {
     return this.http.get<any>(this.backendUrl + 'api/Homes/GetUsers');
+  }
+
+  async returnProvinces(): Promise<Observable<Provinces>>{
+      return this.http.get<any>(this.backendUrl + 'api/Homes/GetProvinces')
   }
 
   signin(user: any): Observable<any> {

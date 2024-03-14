@@ -20,7 +20,7 @@ import { DetailsComponent } from '../details/details.component';
     </section>
     
     <h2 class="listing-heading">{{ housingLocation.name }}</h2>
-    <p class="listing-location">{{ housingLocation.city }}, {{ housingLocation.state }}</p>
+    <p class="listing-location">{{ housingLocation.city }}, {{ housingLocation.suburb}}</p>
     <button id="learnmore" type="button" class="btn btn-primary btn-sm" [routerLink]="['/details/',housingLocation.id]">Learn More</button>
   
     

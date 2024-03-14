@@ -9,6 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import {inject, TemplateRef } from '@angular/core';
 import { ModalDismissReasons, NgbDateAdapter, NgbDateParserFormatter, NgbDatepickerModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {DatepickerAdapterService } from '../datepicker-adapter.service';
+import { Provinces } from '../provinces';
 
 @Component({
   selector: 'app-login',
@@ -25,6 +26,7 @@ import {DatepickerAdapterService } from '../datepicker-adapter.service';
   providers: [{provide: NgbDateAdapter, useClass: DatepickerAdapterService}]
 })
 export class LoginComponent implements OnInit {
+[x: string]: any;
   private modalService = inject(NgbModal);
 	closeResult = '';
   loginForm: FormGroup;
@@ -35,6 +37,7 @@ export class LoginComponent implements OnInit {
   registerform: any
   model1?: string;
   model2?: string;
+  provinces? : Provinces | any
 
   constructor(
     public router: Router,
@@ -45,7 +48,7 @@ export class LoginComponent implements OnInit {
   ) { this.loginForm = this.fb.group({ email: new FormControl('', [Validators.required]), password: [],});
     
     this.registerform = new FormGroup({
-      email : new FormControl(''),
+      email : new FormControl('', [Validators.required]),
       password: new FormControl(''),
       dateofbirth: new FormControl(''),
       firstname: new FormControl(''),
@@ -59,7 +62,9 @@ export class LoginComponent implements OnInit {
 
   
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.GetProvinces()
+  }
 
 
   async onSubmit() {
@@ -128,5 +133,9 @@ export class LoginComponent implements OnInit {
     }
     
     this.registerform.reset()
+  }
+
+  async GetProvinces(){
+    (await this.authService.returnProvinces()).subscribe((data => (this.provinces = data, console.log( 'provinces', this.provinces))))
   }
 }
