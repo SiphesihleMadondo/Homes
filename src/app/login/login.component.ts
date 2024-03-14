@@ -11,6 +11,7 @@ import { ModalDismissReasons, NgbDateAdapter, NgbDateParserFormatter, NgbDatepic
 import {DatepickerAdapterService } from '../datepicker-adapter.service';
 import { Provinces } from '../provinces';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -29,7 +30,7 @@ export class LoginComponent implements OnInit {
 [x: string]: any;
   private modalService = inject(NgbModal);
 	closeResult = '';
-  loginForm: FormGroup;
+  profile!: FormGroup;
   errors:any = null;
   results: any [] = []
   email?: string 
@@ -41,26 +42,38 @@ export class LoginComponent implements OnInit {
 
   constructor(
     public router: Router,
-    public fb: FormBuilder,
+    public formBuilder: FormBuilder,
     public authService: HousingService,
     private token: SharedtokenService,
     private authState: AuthStateService
-  ) { this.loginForm = this.fb.group({ email: new FormControl('', [Validators.required]), password: [],});
+  ) { 
     
-    this.registerform = new FormGroup({
-      email : new FormControl('', [Validators.required]),
-      password: new FormControl(''),
-      dateofbirth: new FormControl(''),
-      firstname: new FormControl(''),
-      lastname: new FormControl(''),
-      province: new FormControl(''),
-      code: new FormControl(''),
-      city: new FormControl('')
+    this.profile = this.formBuilder.group(
+      {
+     
+      loginForm : this.formBuilder.group({
+      email: ['', Validators.required], 
+      password: ['', Validators.required]}),
+    
+    
+      registerform : this.formBuilder.group({
+      email : ['',Validators.required],
+      password: [''],
+      dateofbirth: [''],
+      firstname: [''],
+      lastname: [''],
+      province: [''],
+      code: [''],
+      city: ['']
     })
+
+  });
 
   }
 
-  
+  get _email(): any {
+    return this.registerform.get('email');
+  }
 
   ngOnInit() {
     this.GetProvinces()
@@ -74,7 +87,7 @@ export class LoginComponent implements OnInit {
         
         // iterating through password
         for (let index = 0; index < result.length; index++) {
-              if (this.loginForm.value.email == result[index].email || this.loginForm.value.password == result[index].password) {
+              if (this.profile.value.loginForm.email == result[index].email || this.profile.value.loginForm.password == result[index].password) {
                   this.email = result[index].email
                   this.password = result[index].password
                   break;
@@ -87,14 +100,14 @@ export class LoginComponent implements OnInit {
   
         }
 
-         if((this.loginForm.value.email == this.email) && (this.loginForm.value.email != '') && (this.loginForm.value.password == this.password))
+         if((this.profile.value.loginForm.email == this.email) && (this.profile.value.loginForm.email != '') && (this.profile.value.loginForm.password == this.password))
           {
             this.authState.setAuthState(true);
-            this.loginForm.reset();
+            this.profile.reset();
             this.router.navigate(['/home']);
 
           }else{
-            if ((this.loginForm.value.email == '' || this.loginForm.value.email !== this.email )){
+            if ((this.profile.value.loginForm.email == '' || this.profile.value.loginForm.email !== this.email )){
               this.errors = 'Please enter a correct email address'
             }
             else{
@@ -105,7 +118,7 @@ export class LoginComponent implements OnInit {
           console.log(this.email)
         },
      );
-      console.log(this.loginForm.value)
+     console.log(this.profile.value.loginForm);
       
   }
 
@@ -126,16 +139,20 @@ export class LoginComponent implements OnInit {
   }
   
  async signup(){
-    (await this.authService.signup(this.registerform.value)).subscribe((user: any ) => (console.log(user)))
+   (await this.authService.signup(this.profile.value.registerform)).subscribe((user: any ) => (console.log(user)))
 
-    if (this.registerform.value != null) {
+    if (this.profile.value.registerform != null) {
       alert("Congratulations you have successfully registered.")
-    }
+    } 
     
-    this.registerform.reset()
+    console.log(this.profile.value.registerform);
+    //console.log(this.profile)
+    this.profile.reset()
+
   }
 
   async GetProvinces(){
     (await this.authService.returnProvinces()).subscribe((data => (this.provinces = data, console.log( 'provinces', this.provinces))))
   }
+  
 }
