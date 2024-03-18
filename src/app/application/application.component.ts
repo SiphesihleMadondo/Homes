@@ -5,12 +5,14 @@ import { Housinglocation } from '../housinglocation';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Applicant } from '../applicant';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-application',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   template: `
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=yes" >
    <button
         id="back"
         type="button"
@@ -54,7 +56,7 @@ export class ApplicationComponent {
         applyForm: any;
         applicants: Applicant [] = []
        
-        constructor(protected _housingService: HousingService) {
+        constructor(protected _housingService: HousingService, private metaService: Meta) {
           
           const housingLocationId = parseInt(this.route.snapshot.params['id'], 10)
           this.housingService.getHousingLocationById(housingLocationId).then((housingLocation) => {

@@ -10,6 +10,7 @@ import {inject, TemplateRef } from '@angular/core';
 import { ModalDismissReasons, NgbDateAdapter, NgbDateParserFormatter, NgbDatepickerModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {DatepickerAdapterService } from '../datepicker-adapter.service';
 import { Provinces } from '../provinces';
+import { Meta } from '@angular/platform-browser'; 
 
 
 @Component({
@@ -45,7 +46,8 @@ export class LoginComponent implements OnInit {
     public formBuilder: FormBuilder,
     public authService: HousingService,
     private token: SharedtokenService,
-    private authState: AuthStateService
+    private authState: AuthStateService,
+    private metaService: Meta
   ) { 
     
     this.profile = this.formBuilder.group(
