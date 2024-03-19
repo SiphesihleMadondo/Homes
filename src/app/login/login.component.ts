@@ -141,7 +141,7 @@ export class LoginComponent implements OnInit {
   }
   
  async signup(){
-  // (await this.authService.signup(this.profile.value.registerform)).subscribe((user: any ) => (console.log(user)))
+    (await this.authService.signup(this.profile.value.registerform)).subscribe((user: any ) => (console.log(user)))
 
     if (this.profile.value.registerform != null) {
       alert("Congratulations you have successfully registered.")
