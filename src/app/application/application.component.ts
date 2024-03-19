@@ -26,19 +26,31 @@ import { Meta } from '@angular/platform-browser';
     <section class="listing-apply">
     <h2 class="section-heading">Apply now to live here</h2>
     <br/>
-        <form [formGroup]="applyForm" (submit)="submitApplication()">
+        <form [formGroup]="applyForm" (submit)="submitApplication()" ngNativeValidate>
+
+          <div class="col-md-4">
             <label for="first-name">First Name </label>
-            <input id="first-name" type="text" formControlName = "firstName"/>
+            <input id="first-name" type="text" formControlName = "firstName" required/>
+          </div>
 
+          <div class="col-md-4">
             <label for="last-name">Last Name </label>
-            <input id="last-name" type="text" formControlName = "lastName" />
+            <input id="last-name" type="text" formControlName = "lastName" required />
+          </div>
 
+          <div class="col-md-4">
             <label for="email">Email </label>
-            <input id="email" type="email" formControlName = "email" />
-
+            <input id="email" type="email" formControlName = "email" required />
+          </div>
+          
+          <div class="col-md-4">
             <label for="phonenumber">Phone number </label>
-            <input id="phonenumber" type="text" formControlName = "phonenumber" />
+            <input id="phonenumber" type="text" formControlName = "phonenumber" required />
+          </div>
+
+          <div class="col-md-6">
             <button id="btn-send-app" type="submit" class="btn btn-primary"> Send Application</button>
+          </div>
            
         </form>
       </section>

@@ -69,16 +69,15 @@
               <input formControlName = "city" type="text" class="form-control" id="validationDefault03" required name="city">
             </div>
 
-            <div class="col-md-6" formGroupName="registerform">
+        <div class="col-md-6" formGroupName="registerform">
                 <label for="dateOfBirth" class="form-label">Date of birth</label>
 				<div class="input-group">
                         <input formControlName="dateofbirth" class="form-control" placeholder="yyyy-mm-dd"
                                [minDate]="{year: 1924, month: 01, day: 01}"
                                [maxDate]="{year: 2030, month: 01, day: 01}"
                                name="d2"  ngbDatepicker #d2="ngbDatepicker" required>
-                        <div class="input-group-append">
+                       
                           <button id="toggleCalendar" class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
-                        </div>
                       </div>
 			    </div>
       
@@ -105,8 +104,8 @@
             </div>
            
             <div class="modal-footer">
-                <button id="cancel" type="button" class="btn btn-outline-dark" (click)="modal.dismiss('cancel click')">Cancel</button>
-                <button id="save" type="submit" class="btn btn-outline-dark" >Save</button>
+                <button id="cancel" type="button" class="btn btn-outline-primary" (click)="modal.dismiss('cancel click')">Cancel</button>
+                <button id="save" type="submit" class="btn btn-outline-primary" >Save</button>
             </div>
           </form>
 	</div>

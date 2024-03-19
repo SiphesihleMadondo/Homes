@@ -19,16 +19,4 @@
     border: solid 1px color(primary-color);
     border-radius: 8px;
   }
-  @media (min-width: 500px) and (max-width: 768px) {
-    .results {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    input[type="text"] {
-        width: 70%;
-    }   
-  }
-  @media (max-width: 499px) {
-    .results {
-        grid-template-columns: 1fr;
-    }    
-  }
+  
