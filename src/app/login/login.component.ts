@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
       email : ['',Validators.required],
       password: [''],
       dateofbirth: [''],
-      firstname: [''],
+      firstname: ['', Validators.minLength(4)],
       lastname: [''],
       province: [''],
       code: [''],
@@ -141,7 +141,7 @@ export class LoginComponent implements OnInit {
   }
   
  async signup(){
-   (await this.authService.signup(this.profile.value.registerform)).subscribe((user: any ) => (console.log(user)))
+  // (await this.authService.signup(this.profile.value.registerform)).subscribe((user: any ) => (console.log(user)))
 
     if (this.profile.value.registerform != null) {
       alert("Congratulations you have successfully registered.")
@@ -150,6 +150,7 @@ export class LoginComponent implements OnInit {
     console.log(this.profile.value.registerform);
     //console.log(this.profile)
     this.profile.reset()
+    
 
   }
 

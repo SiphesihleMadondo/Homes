@@ -5,6 +5,11 @@
 .mat-form-field {
 
   display: inline;
+  border: 1px solid rgb(67, 214, 243);
+}
+
+input{
+  border: 1px solid rgb(67, 214, 243);
 }
 
 .example-right-align {
@@ -17,7 +22,7 @@
   padding: 10px;
   border: 1px solid rgb(237, 236, 241);
   height: max-content;
-  width: 500px;
+  width: max-content;
   border-style: solid;
   margin: auto;
 
@@ -40,7 +45,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border: rgb(237, 236, 241);
+  border: 1px solid rgb(67, 214, 243);
   border-radius: 15px;
 }
 
@@ -52,7 +57,7 @@
 /* Add some padding inside the card container */
 .container {
   padding: 2px 16px;
-  border: 1px solid rgb(31, 31, 31);
+  border: 1px solid rgb(67, 214, 243);
   border-radius: 15px;
 }
 
@@ -63,13 +68,48 @@ button.calendar {
 		no-repeat;
 	background-size: 25px;
 	width: max-content;
-	height: 38px;
+	height: 40px;
 	float: left;
 	margin-left: -22px;
 }
 
+.input-group-text{
+  border: 1px solid rgb(67, 214, 243);
+}
+
 #signup{
-  margin-left: 300px; 
+  margin-left: 10%;  
+  border-radius: 50%;
+  background-color: rgb(7, 77, 117);
+  border-color: rgb(7, 77, 117);
 
 }
 
+#Signin{
+  margin-left: 5%; 
+  border-radius: 50%;
+  background-color: rgb(7, 77, 117);
+  border-color: rgb(7, 77, 117);
+}
+
+#cancel {
+  border: 1px solid rgb(67, 214, 243);
+}
+
+#save {
+  
+  border: 1px solid rgb(67, 214, 243);
+}
+
+.form-select{
+  border: 1px solid rgb(67, 214, 243);
+}
+
+#toggleCalendar{
+  width: max-content;
+  border: 1px solid rgb(67, 214, 243);
+}
+
+.ng-valid[required], .ng-valid.required, .form-control, #validationDefault04  {
+  border-left: 5px solid rgb(247, 1, 1); /* red */
+}

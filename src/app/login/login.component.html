@@ -5,7 +5,7 @@
 
 <mat-card class="card">
     <div class="container">
-      <form class="form-signin" [formGroup]="profile" (ngSubmit)="onSubmit()" >
+      <form class="form-signin" [formGroup]="profile" (ngSubmit)="onSubmit()" ngNativeValidate>
           <h3 class="h3 mb-3 font-weight-normal text-center">Sign in</h3>
           <!-- Errors -->
           <div *ngIf="errors?.email" class="alert alert-danger mt-3">
@@ -20,12 +20,12 @@
           </div>
           <!-- Login -->
           <div class="form-group" formGroupName="loginForm">
-              <label>Email address</label>
-              <input type="email" class="form-control" formControlName="email">
+              <label>Email Address</label>
+              <input type="email" class="form-control" formControlName="email" required="true" >
           </div>
           <div class="form-group" formGroupName="loginForm">
               <label>Password</label>
-              <input type="password" class="form-control" formControlName="password">
+              <input type="password" class="form-control" formControlName="password" required>
           </div>
           <br>
        
@@ -37,12 +37,12 @@
 </mat-card>
 
 <!-- formGroup is used with formGroupName and you import formBuilder -->
-<ng-template #content let-modal>
+<ng-template  #content let-modal>
 	<div class="modal-header">
 		<h4 class="modal-title" id="modal-basic-title">Signing Up</h4>
 	</div>
 	<div class="modal-body" >
-		<form [formGroup]="profile" (submit)="signup()" class="row g-3" >
+		<form [formGroup]="profile" (submit)="signup()" class="row g-3"  ngNativeValidate (submit)="modal.close('Save click')">
          
             <div class="col-md-4" formGroupName="registerform">
               <label for="validationDefault01" class="form-label">First name</label>
@@ -55,8 +55,8 @@
             <div class="col-md-4" formGroupName="registerform">
               <label for="validationDefaultEmail" class="form-label">Email</label>
               <div class="input-group">
-                <span class="input-group-text" id="inputGroupPrepend2">&#64;</span>
-                <input type="text" formControlName ="email" class="form-control" id="validationDefaultEmail"  aria-describedby="inputGroupPrepend2" required>
+                <span class="input-group-text" >&#64;</span>
+                <input type="email" formControlName ="email" class="form-control" id="validationDefaultEmail"  aria-describedby="inputGroupPrepend2" required>
               </div>
             </div>
             <div class="col-md-6" formGroupName="registerform">
@@ -75,9 +75,9 @@
                         <input formControlName="dateofbirth" class="form-control" placeholder="yyyy-mm-dd"
                                [minDate]="{year: 1924, month: 01, day: 01}"
                                [maxDate]="{year: 2030, month: 01, day: 01}"
-                               name="d2"  ngbDatepicker #d2="ngbDatepicker">
+                               name="d2"  ngbDatepicker #d2="ngbDatepicker" required>
                         <div class="input-group-append">
-                          <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
+                          <button id="toggleCalendar" class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
                         </div>
                       </div>
 			    </div>
@@ -105,8 +105,8 @@
             </div>
            
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('cancel click')">Cancel</button>
-                <button type="submit" class="btn btn-outline-dark" (click)="modal.close('Save click')" >Save</button>
+                <button id="cancel" type="button" class="btn btn-outline-dark" (click)="modal.dismiss('cancel click')">Cancel</button>
+                <button id="save" type="submit" class="btn btn-outline-dark" >Save</button>
             </div>
           </form>
 	</div>
