@@ -116,11 +116,9 @@ export class LoginComponent implements OnInit {
               this.errors = 'Please enter a correct password'
             }
           }
-          
-          console.log(this.email)
         },
      );
-     console.log(this.profile.value.loginForm);
+     //console.log(this.profile.value.loginForm);
       
   }
 
@@ -141,21 +139,20 @@ export class LoginComponent implements OnInit {
   }
   
  async signup(){
-    (await this.authService.signup(this.profile.value.registerform)).subscribe((user: any ) => (console.log(user)))
+    (await this.authService.signup(this.profile.value.registerform)).subscribe((user: any ) => {let data = user})
 
     if (this.profile.value.registerform != null) {
       alert("Congratulations you have successfully registered.")
     } 
     
-    console.log(this.profile.value.registerform);
-    //console.log(this.profile)
+    //console.log(this.profile.value.registerform);
     this.profile.reset()
     
 
   }
 
   async GetProvinces(){
-    (await this.authService.returnProvinces()).subscribe((data => (this.provinces = data, console.log( 'provinces', this.provinces))))
+    (await this.authService.returnProvinces()).subscribe((data => (this.provinces = data)))
   }
   
 }
