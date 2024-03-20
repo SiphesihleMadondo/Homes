@@ -2,6 +2,12 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.0.
 
+## db.json.
+
+is the JSON server which has all the home's data. which runs on a different server, server 'http://localhost:3000/locations'.
+You will need to install the json-server by running the following command = 'npm install -g json-server',  then run the following command to run the server,
+'json-server --watch 'locaction\db.json'  '-->       location is usually the copy path where the db.json file is located.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
