@@ -1,22 +1,30 @@
 .results {
-    display: grid;
-    column-gap: 14px;
-    row-gap: 14px;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 400px));
-    margin-top: 50px;
-    justify-content: space-around;
-  }
-  input[type="text"] {
-    border: solid 1px color(primary-color);
-    padding: 10px;
-    border-radius: 8px;
-    margin-right: 4px;
-    display: inline-block;
-    width: 30%;
-  }
-  button {
-    padding: 10px;
-    border: solid 1px color(primary-color);
-    border-radius: 8px;
-  }
-  
+  display: grid;
+  column-gap: 14px;
+  row-gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 400px));
+  margin-top: 50px;
+  justify-content: space-around;
+  font-family: 'Noto Sans Myanmar UI, arial, sans-serif';
+}
+
+input[type="text"] {
+  font-family: 'Noto Sans Myanmar UI, arial, sans-serif';
+  border: solid 1px color(primary-color);
+  padding: 10px;
+  border-radius: 8px;
+  margin-right: 4px;
+  display: inline-block;
+  width: 30%;
+}
+
+#SignOut {
+  position: absolute;
+  top: 5%;
+  right: 1%;
+  width: 100px;
+  background-color: rgb(7, 77, 117);
+  color: white;
+  border-radius: 15px;
+  font-family: 'Noto Sans Myanmar UI, arial, sans-serif';
+}

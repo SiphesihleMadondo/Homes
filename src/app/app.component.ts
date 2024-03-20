@@ -15,7 +15,7 @@ import { LoginComponent } from './login/login.component';
   <main>
   <a [routerLink]="['/home']">
     <header class="brand-name">
-      <img class="brand-logo" src="/assets/logo.jpg" alt="logo" aria-hidden="true" width="100px;" height="100px;" /> 
+      <img class="brand-logo" src="/assets/logo.jpg" alt="logo" aria-hidden="true"/> 
     </header>
   </a>
   <section class="content">

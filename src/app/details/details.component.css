@@ -9,27 +9,29 @@
 .listing-heading {
   font-size: 30pt;
   font-weight: bold;
+  font-family: 'Noto Sans Myanmar UI, arial, sans-serif';
   margin-bottom: 15px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .listing-location::before {
   content: url('/assets/location-pin.svg') / '';
-
 }
 
 .listing-location {
   font-size: 24pt;
+  font-family: 'Noto Sans Myanmar UI, arial, sans-serif';
   margin-bottom: 15px;
 }
 
-.listing-features>.section-heading {
+.listing-features .section-heading {
   color: var(--secondary-color);
   font-size: 24pt;
+  font-family: 'Noto Sans Myanmar UI, arial, sans-serif';
   margin-bottom: 15px;
 }
 
 .listing-features {
+  font-family: 'Noto Sans Myanmar UI, arial, sans-serif';
   margin-bottom: 20px;
 }
 
@@ -43,6 +45,7 @@ li {
 
 .listing-apply .section-heading {
   font-size: 18pt;
+  font-family: 'Noto Sans Myanmar UI, arial, sans-serif';
   margin-bottom: 15px;
 }
 
@@ -78,7 +81,6 @@ input {
 }
 
 #back {
-
   position: absolute;
   top: 5%;
   right: 1%;
@@ -86,6 +88,7 @@ input {
   background-color: rgb(7, 77, 117);
   color: white;
   border-radius: 15px;
+  font-family: 'Noto Sans Myanmar UI, arial, sans-serif';
 }
 
 #btn_apply {
